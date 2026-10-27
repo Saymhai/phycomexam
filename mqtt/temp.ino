@@ -8,7 +8,7 @@
 #include <MQTTClient.h>
 
 const char WIFI_SSID[] = "este11e";     // CHANGE TO YOUR WIFI SSID
-const char WIFI_PASSWORD[] = "mhai13920";  // CHANGE TO YOUR WIFI PASSWORD
+const char WIFI_PASSWORD[] = "mhai";  // CHANGE TO YOUR WIFI PASSWORD
 
 const char MQTT_BROKER_ADRRESS[] = "phycom.it.kmitl.ac.th";  // CHANGE TO MQTT BROKER'S ADDRESS
 //const char MQTT_BROKER_ADRRESS[] = "192.168.0.11";  // CHANGE TO MQTT BROKER'S IP ADDRESS
