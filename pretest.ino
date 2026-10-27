@@ -7,8 +7,19 @@
 #include <WiFiS3.h>
 #include <MQTTClient.h>
 
+int num_array[14][7] = {{ 1,1,1,1,1,1,0 },    // 0
+                        { 0,1,1,0,0,0,0 },    // 1
+                        { 1,1,0,1,1,0,1 },    // 2
+                        { 1,1,1,1,0,0,1 },    // 3
+                        { 0,1,1,0,0,1,1 },    // 4
+                        { 1,0,1,1,0,1,1 },    // 5
+                        { 1,0,1,1,1,1,1 },    // 6
+                        { 1,1,1,0,0,0,0 },    // 7
+                        { 1,1,1,1,1,1,1 },    // 8
+                        { 1,1,1,0,0,1,1 }};    // 9
+
 const char WIFI_SSID[] = "este11e";     // CHANGE TO YOUR WIFI SSID
-const char WIFI_PASSWORD[] = "mhai";  // CHANGE TO YOUR WIFI PASSWORD
+const char WIFI_PASSWORD[] = "mhai13920";  // CHANGE TO YOUR WIFI PASSWORD
 
 const char MQTT_BROKER_ADRRESS[] = "phycom.it.kmitl.ac.th";  // CHANGE TO MQTT BROKER'S ADDRESS
 //const char MQTT_BROKER_ADRRESS[] = "192.168.0.11";  // CHANGE TO MQTT BROKER'S IP ADDRESS
@@ -23,8 +34,8 @@ const char PUBLISH_TOPIC_poten[] = "68070194/light";
 const char PUBLISH_TOPIC_ultra[] = "68070194/food";  
 const char PUBLISH_TOPIC_door[] = "68070194/door";  
 
-const char SUBSCRIBE_TOPIC[] = "68070194/temp/#";  // CHANGE IT AS YOU DESIRE
 const char SUBSCRIBE_TOPIC_venus[] = "68070194/venus";
+const char SUBSCRIBE_TOPIC_prob[] = "68070194/prob_stat";
 
 const int PUBLISH_INTERVAL = 5000;  // 5 seconds
 
@@ -33,9 +44,17 @@ MQTTClient mqtt = MQTTClient(256);
 
 unsigned long lastPublishTime = 0;
 
+
 const int red = 1;
 const int green = 3;
 const int blue = 2;
+const int segment_a = 13; 
+const int segment_b = 12; 
+const int segment_c = 11;
+const int segment_d = A2;
+const int segment_e = A3;
+const int segment_f = A4;
+const int segment_g = A5;
 
 void setup() {
   Serial.begin(9600);
@@ -46,6 +65,14 @@ void setup() {
   pinMode(1, OUTPUT);
   pinMode(2, OUTPUT);
   pinMode(3, OUTPUT);
+  pinMode(segment_a, OUTPUT);   
+  pinMode(segment_b, OUTPUT);   
+  pinMode(segment_c, OUTPUT);   
+  pinMode(segment_d, OUTPUT);   
+  pinMode(segment_e, OUTPUT);   
+  pinMode(segment_f, OUTPUT);   
+  pinMode(segment_g, OUTPUT);  
+
 
   int status = WL_IDLE_STATUS;
   while (status != WL_CONNECTED) {
@@ -94,20 +121,22 @@ void connectToMQTT() {
   }
 
   // Subscribe to a topic, the incoming messages are processed by messageHandler() function
-  if (mqtt.subscribe(SUBSCRIBE_TOPIC_venus))
+  // รับมาทีละ 2 ไม่ได้ เปลี่ยนตรงนี้เอา
+  if (mqtt.subscribe(SUBSCRIBE_TOPIC_prob))
     Serial.print("Arduino UNO R4 - Subscribed to the topic: ");
   else
     Serial.print("Arduino UNO R4 - Failed to subscribe to the topic: ");
 
-  Serial.println(SUBSCRIBE_TOPIC_venus);
+  Serial.println(SUBSCRIBE_TOPIC_prob);
   Serial.println("Arduino UNO R4 - MQTT broker Connected!");
+  
 }
 
 void sendToMQTT() {
 
-  int tempRaw = analogRead(A0);
-  double voltage = (tempRaw * 5.0) / 1023.0;
-  double temp = (voltage - 0.5) * 100.0;
+  int adc = analogRead(A0);
+  float R = 10000.0 * adc / (1023.0 - adc);
+  float temp = 1.0 / (log(R / 10000.0) / 3950.0 + 1.0 / 298.15) - 273.15;
 
   String val_str_temp = String(temp);
   char messageBuffer_temp[10];
@@ -175,4 +204,17 @@ void messageReceived(String &topic, String &payload) {
     digitalWrite(green, HIGH);
     digitalWrite(blue, HIGH);
   }
+
+  displayDigit(payload.toInt());
+}
+
+void displayDigit(int digit) {
+  // Set each segment according to the num_array for the given digit
+  digitalWrite(segment_a, num_array[digit][0]);
+  digitalWrite(segment_b, num_array[digit][1]);
+  digitalWrite(segment_c, num_array[digit][2]);
+  digitalWrite(segment_d, num_array[digit][3]);
+  digitalWrite(segment_e, num_array[digit][4]);
+  digitalWrite(segment_f, num_array[digit][5]);
+  digitalWrite(segment_g, num_array[digit][6]);
 }
