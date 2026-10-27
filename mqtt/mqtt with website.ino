@@ -2,7 +2,7 @@
 #include <MQTT.h>
 
 const char WIFI_SSID[] = "este11e";
-const char WIFI_PASSWORD[] = "mhai13920";
+const char WIFI_PASSWORD[] = "mhai";
 
 // 1. เปลี่ยน Broker ให้ตรงกับ HTML และใช้พอร์ต 1883 สำหรับไมโครคอนโทรลเลอร์
 const char MQTT_BROKER_ADRRESS[] = "mqtt-dashboard.com"; 
