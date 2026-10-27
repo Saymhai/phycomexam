@@ -159,7 +159,7 @@ void loop()
 }
 ```
 
-<h2>Keypad + 7 segment</h2>
+<h2>Keypad + 7 segment(Common Cathod)</h2>
 <img width="860" height="592" alt="image" src="https://github.com/user-attachments/assets/85b3a715-8621-4cb2-9386-a3d6233345f1" />
 
 ```
@@ -275,7 +275,7 @@ void displayDigit(int digit) {
 }
 ```
 
-<h2>7 Segment-2</h2>
+<h2>7 Segment-2(Common Cathod)</h2>
 <img width="990" height="600" alt="image" src="https://github.com/user-attachments/assets/094abcd6-4357-4766-b6c5-209d6c2ee700" />
 
 ```
@@ -385,7 +385,7 @@ void loop()
 }
 ```
 
-<h2>LED</h2>
+<h2>LED(Common Anode)</h2>
 <img width="934" height="522" alt="image" src="https://github.com/user-attachments/assets/0becbb5a-db00-41b0-9c15-076c4f8e0621" />
 
 ```
