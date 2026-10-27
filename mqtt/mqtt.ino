@@ -7,19 +7,19 @@
 #include <WiFiS3.h>
 #include <MQTTClient.h>
 
-const char WIFI_SSID[] = "YOUR_WIFI_SSID";     // CHANGE TO YOUR WIFI SSID
-const char WIFI_PASSWORD[] = "YOUR_WIFI_PASSWORD";  // CHANGE TO YOUR WIFI PASSWORD
+const char WIFI_SSID[] = "este11e";     // CHANGE TO YOUR WIFI SSID
+const char WIFI_PASSWORD[] = "mhai";  // CHANGE TO YOUR WIFI PASSWORD
 
 const char MQTT_BROKER_ADRRESS[] = "mqtt-dashboard.com";  // CHANGE TO MQTT BROKER'S ADDRESS
 //const char MQTT_BROKER_ADRRESS[] = "192.168.0.11";  // CHANGE TO MQTT BROKER'S IP ADDRESS
 const int MQTT_PORT = 1883;
-const char MQTT_CLIENT_ID[] = "arduino-uno-r4-client";  // CHANGE IT AS YOU DESIRE
+const char MQTT_CLIENT_ID[] = "arduino-uno-r4-suwannee";  // CHANGE IT AS YOU DESIRE
 const char MQTT_USERNAME[] = "";              // CHANGE IT IF REQUIRED, empty if not required
 const char MQTT_PASSWORD[] = "";              // CHANGE IT IF REQUIRED, empty if not required
 
 // The MQTT topics that Arduino should publish/subscribe
-const char PUBLISH_TOPIC[] = "arduino-uno-r4/send";       // CHANGE IT AS YOU DESIRE
-const char SUBSCRIBE_TOPIC[] = "arduino-uno-r4/receive";  // CHANGE IT AS YOU DESIRE
+const char PUBLISH_TOPIC[] = "68070194/";       // CHANGE IT AS YOU DESIRE
+const char SUBSCRIBE_TOPIC[] = "68070194/";  // CHANGE IT AS YOU DESIRE
 
 const int PUBLISH_INTERVAL = 5000;  // 5 seconds
 
