@@ -1,4 +1,5 @@
 // ถ้าจะใช้ห้ามลืมต่อตัวต้านทาน 10k
+// ต่อ vcc(r) (analog(r) gnd) 
 
 #include <math.h>
 void setup() {
@@ -11,8 +12,7 @@ void loop() {
 
   float R = 10000.0 * adc / (1023.0 - adc);
 
-  float temp = 1.0 / (log(R / 10000.0) / 3950.0
-              + 1.0 / 298.15) - 273.15;
+  float temp = 1.0 / (log(R / 10000.0) / 3950.0 + 1.0 / 298.15) - 273.15;
 
   Serial.print("Temperature: ");
   Serial.print(temp);
