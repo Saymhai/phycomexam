@@ -385,4 +385,40 @@ void loop()
 }
 ```
 
+<h2>LED</h2>
+<img width="934" height="522" alt="image" src="https://github.com/user-attachments/assets/0becbb5a-db00-41b0-9c15-076c4f8e0621" />
+
+```
+void setup()
+{
+  pinMode(9, OUTPUT);
+  pinMode(6, OUTPUT);
+  pinMode(3, OUTPUT);
+}
+
+void loop()
+{
+  digitalWrite(9, HIGH);
+  delay(1000); // Wait for 1000 millisecond(s)
+  digitalWrite(9, LOW);
+  digitalWrite(6, HIGH);
+  delay(1000); // Wait for 1000 millisecond(s)
+  digitalWrite(6, LOW);
+  digitalWrite(3, HIGH);
+  delay(1000); // Wait for 1000 millisecond(s)
+  digitalWrite(3, LOW);
+  digitalWrite(9, HIGH);
+  digitalWrite(6, HIGH);
+  delay(1000); // Wait for 1000 millisecond(s)
+  digitalWrite(6, LOW);
+  digitalWrite(3, HIGH);
+  delay(1000); // Wait for 1000 millisecond(s)
+  digitalWrite(9, LOW);
+  digitalWrite(6, HIGH);
+  delay(1000); // Wait for 1000 millisecond(s)
+  digitalWrite(9, HIGH);
+}
+```
+
+
 ฉุกเฉิน : https://github.com/Apich01/Code_BookArduino
